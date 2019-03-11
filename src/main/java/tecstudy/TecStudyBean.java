@@ -4,8 +4,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -20,53 +20,14 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class TecStudyBean {
-	//日付
-	private SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd(E)");
 
+	//日付
+	private Date date;
+	/*	//日付
+		private SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd(E)");
+	*/
 	//感動大学申込受付
 	private String receptionist;
-
-	public String submit(){
-		try {
-			//出力先を作成する
-			FileWriter fw = new FileWriter("C:\\csv\\test.csv", false);
-			PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
-
-			//内容を指定する
-			//2018/12/13    ここにindex.xhtmlでsubmit()したときに生成されたコンポーネントを渡したい。
-			//他クラスの値を受け取りにはFacesContextの編集が必要？
-			pw.print(getDate());
-			pw.print(",");
-			pw.print(getEmployeesNo());
-			pw.print(",");
-			pw.print(getEmployeesName());
-			pw.print(",");
-			pw.print(getInstractorName());
-			pw.print(",");
-			pw.print(getCourseName());
-			pw.print(",");
-			pw.print(getPoint());
-			pw.print(",");
-			pw.print(getReason());
-			pw.print(",");
-			pw.print(getJoin());
-			pw.print(",");
-			pw.print(getImprovement());
-			pw.print(",");
-			pw.print(getReceptionist());
-
-			//ファイルに書き出す
-			pw.close();
-
-			//終了メッセージをコンソールに出力する
-			System.out.println("CSV出力が完了しました。");
-
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-
-		return "index.xhtml";
-	}
 
 	//講座名
 	private String courseName;
@@ -99,6 +60,50 @@ public class TecStudyBean {
 		items = new LinkedHashMap<>();
 		items.put("12月19日(水)参加します！",1);
 		items.put("また次の機会にします。",2);
+	}
+
+	/**
+	 * submit処理。csvをCドライブ直下のcsvフォルダにアンケートを出力する。
+	 * @return
+	 */
+	public String submit(){
+		try {
+			//出力先を作成する
+			FileWriter fw = new FileWriter("C:\\csv\\input_tec_studyt.csv", false);
+			PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
+
+			//内容を指定する
+			pw.print(getDate());
+			pw.print(",");
+			pw.print(getEmployeesNo());
+			pw.print(",");
+			pw.print(getEmployeesName());
+			pw.print(",");
+			pw.print(getInstractorName());
+			pw.print(",");
+			pw.print(getCourseName());
+			pw.print(",");
+			pw.print(getPoint());
+			pw.print(",");
+			pw.print(getReason());
+			pw.print(",");
+			pw.print(getJoin());
+			pw.print(",");
+			pw.print(getImprovement());
+			pw.print(",");
+			pw.print(getReceptionist());
+
+			//ファイルに書き出す
+			pw.close();
+
+			//終了メッセージをコンソールに出力する
+			System.out.println("CSV出力が完了しました。");
+
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+
+		return "input_tec_study.xhtml";
 	}
 
 	//選択リスト 取得
@@ -196,12 +201,16 @@ public class TecStudyBean {
 		this.employeesName = employeesName;
 	}
 
-	//システム日付　取得
-	public String getDate() {
-
-	//カレンダーを生成
-	Calendar cal = Calendar.getInstance();
-	return date.format(cal.getTime());
+	//日付　取得
+	public Date getDate() {
+		//カレンダーを生成
+		Calendar cal = Calendar.getInstance();
+		date = cal.getTime();
+		return date;
 	}
 
+	//日付 設定
+	public void setDate(Date date) {
+		this.date = date;
+	}
 }
