@@ -1,10 +1,96 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
 <h:head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>アンケート入力画面</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>感動大学アンケート入力画面</title>
 </h:head>
 <h:body>
+	<h:form>
+		<!-- 社名の画像  -->
+		<img src="./resources/images/logo.jpg" />
+
+		参加日<h:inputText id = "参加日" required = "true"
+						   value="#{excitementcollege.ExcitementCollegeBean.jukou_date}" />
+		　※例：2019/01/01<p />
+		<h:message for = "参加日" /><p /><br />
+
+		アンケートシステム<p />
+		感動大学　　アンケート　兼　出席　　　　　　　　　　
+		社員番号：#{excitementcollege.ExcitementCollegeBean.id}　
+		氏名：#{excitementcollege.ExcitementCollegeBean.name}<p />
+
+  		講師名：<h:inputText id = "講師名" required = "true"
+  							 value="#{excitementcollege.ExcitementCollegeBean.koushi_name}"
+							 size="15" maxlength="15" />
+  		講座名：<h:inputText id = "講座名" required = "true"
+  							 value="#{excitementcollege.ExcitementCollegeBean.kouza}"
+  							 size="50" maxlength="50" />
+		<p />
+		<h:message for = "講師名" /><p />
+		<h:message for = "講座名" /><p /><br />
+
+		☆このアンケートは、皆さんの満足度をより高めるために行っています。参考になる意見をご記入ください！<p />
+			<br />
+			<br />
+   		１．本日の研修はいかがでしたか？<p />
+			<h:selectOneMenu value="#{excitementcollege.ExcitementCollegeBean.hyouka_point}">
+				<f:selectItem itemValue="00" itemLabel="00" />
+				<f:selectItem itemValue="10" itemLabel="10" />
+				<f:selectItem itemValue="20" itemLabel="20" />
+				<f:selectItem itemValue="30" itemLabel="30" />
+				<f:selectItem itemValue="40" itemLabel="40" />
+				<f:selectItem itemValue="50" itemLabel="50" />
+				<f:selectItem itemValue="60" itemLabel="60" />
+				<f:selectItem itemValue="70" itemLabel="70" />
+				<f:selectItem itemValue="80" itemLabel="80" />
+				<f:selectItem itemValue="90" itemLabel="90" />
+				<f:selectItem itemValue="100" itemLabel="100" />
+			</h:selectOneMenu>点<p />
+			<br />
+    	2.上記点数の理由をお聞かせください。<p />
+			<h:inputTextarea id = "評価理由" required = "true"
+							 cols="100" rows="10"
+							 value="#{excitementcollege.ExcitementCollegeBean.hyouka_riyuu}" />
+			<p />
+			<br />
+  		3.改善点や悪かった点を教えてください。（講座内容、運営、なんでもOK）<p />
+			<h:inputTextarea id = "改善点" required = "true"
+							 cols="100" rows="10"
+							 value="#{excitementcollege.ExcitementCollegeBean.hyouka_kaizen}" />
+			<p />
+			<br />
+  		4.この講座を受講しようと思った理由に☑をつけてください（複数選択可）<p />
+			<h:selectManyCheckbox id = "受講理由" required = "true"
+				value="#{excitementcollege.ExcitementCollegeBean.kouza_jukouRiyuu}">
+				<f:selectItem itemValue="1" itemLabel="1.現場で求められているスキルだから" />
+				<f:selectItem itemValue="2" itemLabel="2.自分に足りないスキルを鍛えられると思ったから" />
+				<f:selectItem itemValue="3" itemLabel="3.以前学んだことがありもっと学びたいと思ったから" />
+			</h:selectManyCheckbox>
+			<p />
+			<br />
+  		5.この講座はどんな人におすすめしますか？その理由も教えてください。<p />
+			<h:inputTextarea id = "おすすめ理由" required = "true" cols="100" rows="10"
+				value="#{excitementcollege.ExcitementCollegeBean.kouza_recommendRiyuu}" />
+			<p />
+			<br />
+  		6.感動大学の新規申し込みを受け付けます。<p />
+			<h:inputTextarea  id = "新規申し込み" required = "true" cols="100" rows="10"
+				value="#{excitementcollege.ExcitementCollegeBean.kouza_request}" />
+			<p />
+			<h:message for = "評価理由" /><p />
+			<h:message for = "改善点" /><p />
+			<h:message for = "受講理由" /><p />
+			<h:message for = "おすすめ理由" /><p />
+			<h:message for = "新規申し込み" /><p />
+			<br />
+			<h:commandButton type="submit" value="送信"
+							 action="#{excitementcollege.ExcitementCollegeBean.send()}" />
+			<p />
+	</h:form>
 </h:body>
+</f:view>
 </html>

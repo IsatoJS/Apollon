@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>感動大学アンケート結果画面</title>
+</h:head>
+<h:body>
+	<h2 />送信結果<br /><br />
+	参加日：<h:outputText value="#{excitementcollege.ExcitementCollegeBean.jukou_date}">
+    		<f:convertDateTime pattern="yyyy/MM/dd" />
+    		</h:outputText><p/>
+    講師名：<h:outputText value="#{excitementcollege.ExcitementCollegeBean.koushi_name}" /><p/>
+    講座名：<h:outputText value="#{excitementcollege.ExcitementCollegeBean.kouza}" /><p/>
+    評価点：<h:outputText value="#{excitementcollege.ExcitementCollegeBean.hyouka_point}" /><p/>
+    評価理由：<h:outputText value="#{excitementcollege.ExcitementCollegeBean.hyouka_riyuu}" /><p/>
+    改善点：<h:outputText value="#{excitementcollege.ExcitementCollegeBean.hyouka_kaizen}" /><p/>
+    おすすめ理由：<h:outputText value="#{excitementcollege.ExcitementCollegeBean.kouza_recommendRiyuu}" /><p/>
+    新規申し込み：<h:outputText value="#{excitementcollege.ExcitementCollegeBean.kouza_request}" /><p/>
+    受講理由：<h:outputText value="#{excitementcollege.ExcitementCollegeBean.kouza_jukouRiyuu.get(0)}" /><p/>
+    <br /><br />
+	アンケートを送信しました。<p/>
+	<h:link outcome = "menu" value="TOPへ移動" />
+
+</h:body>
+</html>
