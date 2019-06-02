@@ -1,5 +1,8 @@
 package excitementcollege;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -140,7 +143,8 @@ public class ExcitementCollegeBean implements Serializable {
 	// リクエスト受信時に呼ばれる初期化メソッド
     @PostConstruct
     public void init() {
-        this.id = "999";
+    	// 将来的にはDBから読み込むようにしたい
+        this.id   = "999";
         this.name = "テスト太郎";
 
     }
@@ -148,9 +152,54 @@ public class ExcitementCollegeBean implements Serializable {
 
     // submitボタンが押下されたときに呼ばれるメソッド
     public String send() {
+    	// 入力された内容をcsvとして出力する
+    	try(FileWriter fw = new FileWriter("C:\\output\\Apollon\\result_excit.csv", true);) {
+    		BufferedWriter bw = new BufferedWriter(fw);
+
+    		// 以下より出力内容の編集
+    		List<String> r1 = new ArrayList<String>();
+			r1.add(getJukou_date());
+			r1.add(getId());
+			r1.add(getName());
+			r1.add(getKoushi_name());
+			r1.add(getKouza());
+			r1.add(getHyouka_point());
+			r1.add(getHyouka_riyuu());
+			r1.add(getHyouka_kaizen());
+			r1.add(getKouza_recommendRiyuu());
+			r1.add(getKouza_request());
+
+			// 受講理由については，選択された項番を結合して文字列とする
+			StringBuffer sb_riyuu = new StringBuffer();
+			for (int i = 0; i < getKouza_jukouRiyuu().size(); i++) {
+				sb_riyuu.append(getKouza_jukouRiyuu().get(i));
+			}
+
+			r1.add(sb_riyuu.toString());
+
+			final String KANMA = ",";
+
+			// 改行コード
+			final String BR    = System.getProperty("line.separator");
+
+
+			for (int i = 0; i < r1.size(); i++) {
+				if (i == r1.size() - 1) {
+					bw.write(r1.get(i));
+					bw.write(BR);
+				} else {
+					bw.write(r1.get(i));
+					bw.write(KANMA);
+				}
+			}
+
+			bw.flush();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
     	return "output_excitement_college";
 
     }
-
-
 }
