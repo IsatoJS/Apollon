@@ -3,7 +3,9 @@ body {
     color : #ffffff;
     margin-right: auto;
     margin-left: auto;
+    /*
     width:700px;
+    */
     font-size: 12pt;
     font-family: メイリオ, Osaka;
     line-height: 1.5em;
@@ -22,8 +24,10 @@ footer{
     margin-top:10px;
 }
 .inputsize{
+		/*
     width: 400px;
-}   
+    */
+}
 .kandou{
     margin-top:10px;
     border-collapse: collapse;
@@ -44,3 +48,4 @@ footer{
 .submit_button{
     margin-right: 10px;
 }
+.error{font-size: 0.8em; }

@@ -5,24 +5,44 @@
 <h:head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<title>感動大学アンケート結果画面</title>
 </h:head>
 <h:body>
-	<h2 />送信結果<br /><br />
-	参加日：<h:outputText value="#{excitementcollege.ExcitementCollegeBean.jukou_date}">
-    		<f:convertDateTime pattern="yyyy/MM/dd" />
-    		</h:outputText><p/>
-    講師名：<h:outputText value="#{excitementcollege.ExcitementCollegeBean.koushi_name}" /><p/>
-    講座名：<h:outputText value="#{excitementcollege.ExcitementCollegeBean.kouza}" /><p/>
-    評価点：<h:outputText value="#{excitementcollege.ExcitementCollegeBean.hyouka_point}" /><p/>
-    評価理由：<h:outputText value="#{excitementcollege.ExcitementCollegeBean.hyouka_riyuu}" /><p/>
-    改善点：<h:outputText value="#{excitementcollege.ExcitementCollegeBean.hyouka_kaizen}" /><p/>
-    おすすめ理由：<h:outputText value="#{excitementcollege.ExcitementCollegeBean.kouza_recommendRiyuu}" /><p/>
-    新規申し込み：<h:outputText value="#{excitementcollege.ExcitementCollegeBean.kouza_request}" /><p/>
-    受講理由：<h:outputText value="#{excitementcollege.ExcitementCollegeBean.kouza_jukouRiyuu.get(0)}" /><p/>
-    <br /><br />
-	アンケートを送信しました。<p/>
-	<h:link outcome = "menu" value="TOPへ移動" />
+	<div class="container">
+		<!-- 社名の画像  -->
+		<div class="jumbotron" style="margin-top:10px">
+			<h:graphicImage library="img" name="bold_logo.jpg" styleClass="img-fluid" />
+		</div>
 
+		<div class="jumbotron">
+			<h3 class="text-left">送信結果</h3>
+			<hr class="my-4" />
+			■参加日<br />
+			<h:outputText value="#{excitementcollege.ExcitementCollegeBean.jukou_date}">
+    			<f:convertDateTime pattern="yyyy/MM/dd" />
+    		</h:outputText><p/>
+			■講師名<br />
+			<h:outputText value="#{excitementcollege.ExcitementCollegeBean.koushi_name}" /><p/>
+		    ■講座名<br />
+		    <h:outputText value="#{excitementcollege.ExcitementCollegeBean.kouza}" /><p/>
+    		■評価点<br />
+    		<h:outputText value="#{excitementcollege.ExcitementCollegeBean.hyouka_point}" /><p/>
+    		■評価理由<br />
+    		<h:outputText value="#{excitementcollege.ExcitementCollegeBean.hyouka_riyuu}" /><p/>
+   			■改善点<br />
+   			<h:outputText value="#{excitementcollege.ExcitementCollegeBean.hyouka_kaizen}" /><p/>
+   			■受講理由<br />
+   			<h:outputText value="#{excitementcollege.ExcitementCollegeBean.kouza_jukouRiyuu}" /><p/>
+   			■おすすめ理由<br />
+   			<h:outputText value="#{excitementcollege.ExcitementCollegeBean.kouza_recommendRiyuu}" /><p/>
+			■新規申し込み<br />
+			<h:outputText value="#{excitementcollege.ExcitementCollegeBean.kouza_request}" /><p/>
+		</div>
+
+		アンケートを送信しました。<p/>
+		<h:button class="btn btn-success" value="TOPへ移動" outcome="menu" />
+		<p />
+	</div>
 </h:body>
 </html>

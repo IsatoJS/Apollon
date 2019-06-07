@@ -37,4 +37,13 @@ public class MenuBean {
     public String trnInputTecStudy() {
         return "input_tec_study.xhtml";
     }
+
+    /**
+     * CSSサンプル画面に遷移する。
+     *
+     * @return 遷移先画面のxhtmlファイル名
+     */
+    public String trnCssSample() {
+        return "css_sample.xhtml";
+    }
 }

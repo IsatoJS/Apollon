@@ -1,10 +1,68 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
-<h:head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>アンケート入力画面</title>
-</h:head>
-<h:body>
-</h:body>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>BOLDayアンケート</title>
+        <h:outputStylesheet library="css" name="mystyle.css" />
+    </h:head>
+    <h:body>
+        <p><h:graphicImage library="images" name="image1.PNG" /></p>
+        <p>参加日：</p>
+        <h2>アンケートシステム</h2>
+            <h3>BOLDay　アンケート　兼　出席票</h3>
+            そのまま出したい<br/>あいうえお
+        <h:form>
+            <h:panelGrid columns="1">
+                <h:selectOneListbox value="#{boldayBean.kousi}" size="1">
+                    講師名：<f:selectItems value="#{boldayBean.kousiname}" />
+                </h:selectOneListbox>
+
+                <h:selectOneListbox value="#{boldayBean.kouza}" size="1">
+                    講座名：<f:selectItems value="#{boldayBean.kouzaname}" />
+                </h:selectOneListbox>
+
+                <h:inputText value="#{boldayBean.tensu}" />点<br/>
+                2.上記点数の理由をお聞かせください。<br/>
+                <h:inputTextarea value="#{boldayBean.riyuu}"  cols="30" rows="5"/>
+
+                3.運営の段取りについてどうでしたか？　　当てはまる箇所に✓を入れてください。<br/>
+                ※受付・案内・スケジューリング、資料準備etc<br/>
+                <h:selectManyCheckbox value="#{boldayBean.dandoriList}">
+                    <f:selectItems value="#{boldayBean.dandori}" />
+                </h:selectManyCheckbox>
+
+                4.ワークショップについてどうでしたか？　当てはまる箇所に✓を入れてください。（複数回答可）<br/>
+                <h:selectManyCheckbox value="#{boldayBean.workresult}">
+                    <f:selectItems value="#{boldayBean.workList}" />
+                </h:selectManyCheckbox>
+
+                5.今回のBOLDayの内容について、ご意見・ご感想をお聞かせください。<br/>
+                <h:inputTextarea value="#{boldayBean.iken}"  cols="30" rows="5"/>
+
+                6.サシさとしについて<br/>
+                次回"サシさとし"の抽選対象とすることを希望されますか？※"サシさとし"は実際にはサシではなく3名くらいの社員と一緒に飲みに行くことができる企画です！<br/>
+                <h:selectOneRadio value="#{boldayBean.sasiresult}">
+                    <f:selectItems value="#{boldayBean.sasiList}" />
+                </h:selectOneRadio>
+                <br/>
+                ※実際に参加した社員からは大好評！ 贅沢な時間をもぎ取るチャンスですよ！
+                <br/><br/>
+                7.懇親会についてのご意見をお聞かせください。<br/>
+                7-1<br/>
+                <h:inputText value="#{boldayBean.konsinresulet}" />点<br/>
+                7-2.その点数の理由は？<br/>
+                <h:inputTextarea value="#{boldayBean.konsinroyuu}"  cols="30" rows="5"/>
+
+
+
+
+
+
+
+            <h:commandButton value="送信" action="#{boldayBean.next()}" />
+            </h:panelGrid>
+        </h:form>
+    </h:body>
 </html>
